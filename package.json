@@ -4,7 +4,8 @@
   "description": "Seed project form nodejs koa",
   "main": "index.js",
   "scripts": {
-    "build": "babel src -d app --watch",
+    "build": "babel src -d app",
+    "dev": "babel src -d app --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
