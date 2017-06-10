@@ -10,13 +10,15 @@ sudo: false
 script:
 - npm run build
 after_success:
-- export SSHPASS=$pwd
+- zip -r api.zip ./app
+- sshpass -p $pwd scp ./api.zip $host:/usr/local/source/distss/
+- sshpass -p $pwd scp ./deploy_api.sh $host:/usr/local/source/distss/
 before_install:
-- openssl aes-256-cbc -K $encrypted_93414c0ea4e4_key -iv $encrypted_93414c0ea4e4_iv
+- openssl aes-256-cbc -K $encrypted_bd0bd10cde91_key -iv $encrypted_bd0bd10cde91_iv
   -in id_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
 - echo -e "Host 123.207.14.113\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-after_success:
-- zip -r api.zip ./app
-- sshpass -p $pwd scp ./api.zip $uid@123.207.14.113:/usr/local/source/distss/
-- sshpass -p $pwd scp ./deploy.sh $uid@123.207.14.113:~/
+env:
+  global:
+  - secure: KZ4nbG81kFm8DcVtePoC8cm3y55Y55g6Mny7xpu/tsDUBfIlWgqWVf24HlrfsYO4xqtPzzeOQo5VFEi0Jjjth3YHkUd3x1Kt4uv2e9ZVxQbP8JG2ODZ3i+R8Uh6UFI+eUs/fMbp1GvPtI5m7qWIty1K6U67YVVRH5+Jik9w7PhwT8Q3NugiUYC4d49y6zbHooLmbhxZpMd2VYOjdI0Vm1e8bINu+wy+hWEaaNAJcolRiGcqXPuTvixS7CNk8BG4MCV8GajqfP18/306vaK35CsRbKi/Ztds95kfdb3hwF4q0XxNw3bnr4wH7oEonhBI6f/vrHFF2q/tK7aG8e6yUVFmDU+gFACOBVNhLQGf0hsUcEeaX2loAkw33rfFiDpu8DpmEyKmJU9if+w9CAUAfZNZiGbFBuMGX6q+GlpsKMcKaOQnHk9/jQ1MTnPL2o8mY5kpgA75NgHGcFD9AQbPu2nsGsLarlZSzwRH9ZTMKzjlLnZO0Yzo80cTaKp/nwahW2Z8jZXStNjDNKjws/P4GLByWlBgGXdKgGhQhz08yD8oAf3Iabfcv1vAz6UodDlSB3FdtT/QFGXjjt2vMuPfRIBb1bxi6nnZctZkvx+UdjYRF4a7zjnSGtOKUs613/LlK1kGmTddp1raE9/Sd/oKcSKC7WBcWex5bsMgzfUSkySc=
+  - secure: VBbtrwAxppM+SZrqevXR9DPcBQKeeUtSBW7MjHkuRRyw5V8wI3Up96MFpk27t7CtysoaXQs/XriVozdnJsJTPS2R9xxW6zCMNotwaLQ7f+tAsJ8rvNNxChss46MyKQgc2G8IpoYaMuWzzt+5ks1tYmCea+uGoXtin6Xk6ZlZIkQzEfL69Y81yOFiqvPFp3SNVDU687KKEwBCo404Mc+k0CH6zRHkLepLS8H8ZJZ9O/T78ZnnLUlq4y0jmdgmepSiPKddg313lbnqJcoZZfKIjDj44M4/eL3ZK8tUj5h/ulkW7+dXsW90d4aE+G3Rl7lPGrWxH0m2a1NCeviGzBQxZy+9IV2T2mzvyy6IJcQwyr5dzzHNDujioOF506qDocdu+Gzpl5tHsvcxE6FOc6Je0CUuq9Z2dUV3H/tEQtunb4hBhzmRUvMBojF62P44ROe1swbJQKxJ1OhWNmIC4wEKMPJn/b/zT0nYOCfpUuJ3wsVVhXX3m/Ze/vwiWoIweKcdkbJ6d/V7aZI++Kq9oDSIsDaFEZtDmOB5qLyafFN5/W8gYe/bJyQygdtSh/r2GJMT1r2XYYUEtTIqcSxyC791aI+KAWF0LcqkaDQFaounArgDZaFyBeKjcWmDSwqFJw2nYmuX1+C78KYxfNGanrduMca1oeGTF4ytyV3PSWf4Mlc=
