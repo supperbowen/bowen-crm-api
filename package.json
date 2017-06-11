@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src -d app",
+    "prod": "babel src -d api --watch",
     "dev": "babel src -d app --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
