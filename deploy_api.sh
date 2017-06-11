@@ -8,12 +8,11 @@ cnpm install
 rm -rf .git
 rm -rf .gitignore
 rm -rf .travis..yml
-rm -rf src
 rm -rf  id_rsa.enc
 rm -rf deploy_api.sh
 rm -rf README.md
 rm -rf LICENSE
 sh /usr/local/source/kill-node.sh 
-nohup npm run prod &
+nohup npm run prod & rm -rf src
 
 
