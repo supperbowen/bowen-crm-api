@@ -1,4 +1,4 @@
-//import "babel-polyfill";
+import "babel-polyfill";
 import {routePrefix,route, koaRouter} from './router';
 const Koa = require('koa');
 const app = new Koa();
