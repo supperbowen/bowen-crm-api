@@ -12,7 +12,7 @@ rm -rf  id_rsa.enc
 rm -rf deploy_api.sh
 rm -rf README.md
 rm -rf LICENSE
-sh /usr/local/source/kill-node.sh 
-nohup npm run prod & rm -rf src
+#sh /usr/local/source/kill-node.sh 
+nohup npm run prod &
 
 
