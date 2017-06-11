@@ -10,7 +10,7 @@ rm -rf app
 
 cp package.json /usr/local/source/crm
 cd /usr/local/source/crm
-npm install --production
+cnpm install
 
 
 
