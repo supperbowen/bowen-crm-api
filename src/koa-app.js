@@ -1,6 +1,6 @@
-import "babel-polyfill";
+//import "babel-polyfill";
 import {routePrefix,route, koaRouter} from './router';
-const Koa = require('Koa');
+const Koa = require('koa');
 const app = new Koa();
 
 //import controllers to app, we should do this or our controller will not execute!
