@@ -16,9 +16,6 @@ before_install:
 - echo -e "Host 123.207.14.113\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 after_success:
 - export SSHPASS=$pwd
-- zip -r api.zip ./app
-- sshpass -e scp ./api.zip $host:/usr/local/source/distss/
-- sshpass -e scp ./package.json $host:/usr/local/source/distss/
 - sshpass -e scp ./deploy_api.sh $host:/usr/local/source/distss/
 - sshpass -e ssh $host 'cd /usr/local/source/distss && sh deploy_api.sh'
 env:
