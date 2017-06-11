@@ -11,6 +11,7 @@ rm -rf app
 cp package.json /usr/local/source/crm
 cd /usr/local/source/crm
 cnpm install
+nohup node api
 
 
 
