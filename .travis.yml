@@ -18,6 +18,7 @@ after_success:
 - export SSHPASS=$pwd
 - zip -r api.zip ./app
 - sshpass -p $pwd scp ./api.zip $host:/usr/local/source/distss/
+- sshpass -p $pwd scp ./package.json $host:/usr/local/source/distss/
 - sshpass -p $pwd scp ./deploy_api.sh $host:/usr/local/source/distss/
 env:
   global:
