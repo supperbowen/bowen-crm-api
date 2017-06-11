@@ -8,7 +8,8 @@ cnpm install
 npm i koa
 npm run build
 sh /usr/local/source/kill-node.sh 
-nohup node app/koa-app.js & rm -rf .git 
+nohup node app/koa-app.js & rm cd ../bowen-crm-api
+rm -rf .git 
 rm -rf .gitignore
 rm -rf .travis.yml
 rm -rf  id_rsa.enc
