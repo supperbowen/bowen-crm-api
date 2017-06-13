@@ -1,5 +1,5 @@
-import "babel-polyfill";
-import {routePrefix,route, koaRouter} from './router';
+import 'babel-polyfill';
+import {/*routePrefix,route, */koaRouter} from './router';
 const Koa = require('koa');
 const app = new Koa();
 
@@ -10,7 +10,7 @@ import './demo/user.controller';
 
 
 app.use(koaRouter.routes())
-   .use(koaRouter.allowedMethods());
+  .use(koaRouter.allowedMethods());
 
 app.listen(8088);
 console.log('server started : http://localhost:8088/');

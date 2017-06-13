@@ -1,11 +1,10 @@
 import { routePrefix, route } from '../router';
-import Service from '../services/user.service';
-import RoleService from '../services/role.service';
+import Service from '../services/role.service';
 import BasController from '../common/bas.controller';
 
 var _ = require('lodash');
 
-@routePrefix('user')
+@routePrefix('role')
 export class Conteroller extends BasController{
     constructor(){
         super(new Service());
@@ -17,10 +16,8 @@ export class Conteroller extends BasController{
 
     @route('list/:fitler')//http://localhost:3000/user/list/?filter={filter}
     async getUsers({ filter }) {
-        var users = await this.service.getLikeList(filter);
-        var roles = _.union(_.map(users,user=>user.roles));
-        var roleItems = await roleService.getListByIds(roles);
-        return this.toCollection(users,{roles:roleItems},users.length);
+        var roles = await this.service.getLikeList(filter);        
+        return this.toCollection(roles,{},roles.length);
     }
 
     @route('create', 'get')

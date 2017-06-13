@@ -26,7 +26,7 @@ function timeout(testVal) {
     setTimeout(function(){
         resolve(testVal);
     }, 10);
-  });
+}) ;
 }
 
 koaRouter.add(TemplateConteroller);
