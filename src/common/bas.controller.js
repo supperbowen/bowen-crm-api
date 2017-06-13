@@ -1,11 +1,16 @@
-import UserService from '../service/user.servce';
+import UserService from '../services/user.service';
 import _ from 'lodash';
 
 export default class BasController{
   constructor(service){
-    this.service = service;
+    this.Service = service;
     this.userService = new UserService();
   }
+
+  get service(){
+    return this.Service;
+  }
+
   toCollection(items=[], lookupItems={}, count=0){
     var userids = [];
     var creators = _.map(items, item=>item.createBy);

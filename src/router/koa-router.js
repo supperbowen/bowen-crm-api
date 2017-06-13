@@ -1,7 +1,7 @@
 var koaRouter = new require('koa-router')();
 
 koaRouter.add = function(Controller){
-  if(typeof controller === 'function'){
+  if(typeof Controller === 'function'){
     new Controller();
   }
 };

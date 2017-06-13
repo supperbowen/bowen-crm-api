@@ -1,10 +1,17 @@
-var {Schema} = require('mongoose');
+var mongoose = require('mongoose');
+var {Schema} = mongoose;
 var _ = require('lodash');
 export default class Service{
   constructor(name, schema){
-    this.schema = schema;
-    this.DbModel = new Schema(name, schema);
+    this.schemaDeclare = schema;
+    this.schema = new Schema(schema);
+    this.name = name;
   }
+
+  get DbModel(){
+    return mongoose.model(this.name, this.schema);
+  }
+
   hasKey(key){
     return this.schema.hasOwnProperty(key);
   }
@@ -22,7 +29,7 @@ export default class Service{
 
     return query.sort(sortter).exec();
   }
-  getLikeList(keys, filter,pageSize,pageNumber,sortter){
+  getLikeList(filter,keys,pageSize,pageNumber,sortter){
     keys = keys&&keys.length?keys:['name','desc'];
     var filterOptions = {$or:[]};
     for(let key of keys){

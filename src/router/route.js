@@ -51,15 +51,15 @@ export function route(route, method, isAsync = true) {
                 try {
                     if (method === 'get' || method === 'delete') {
                         if (isAsync) {
-                            result = await descriptor.value.call(this, this.params);
+                            result = await descriptor.value.call(target, this.params, this);
                         } else {
-                            result = descriptor.value.call(this, this.params);
+                            result = descriptor.value(target,this.params, this);
                         }
                     } else {
                         if (isAsync) {
-                            result = await descriptor.value.call(this, this.body);
+                            result = await descriptor.value(target,this.body, this);
                         } else {
-                            result = descriptor.value.call(this, this.body);
+                            result = descriptor.value(target,this.body,this);
                         }
                     }
                 } catch (error) {

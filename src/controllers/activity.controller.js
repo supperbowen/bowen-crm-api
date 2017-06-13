@@ -1,17 +1,18 @@
 import { routePrefix, route } from '../router';
 import Service from '../services/activity.service';
 import BasController from '../common/bas.controller';
-import EmployeeService from '../service/employee.servce';
+import EmployeeService from '../services/employee.service';
+import context from '../common/context'
 
 
 
 @routePrefix('activity')
-export class Conteroller extends BasController{
+export default class Conteroller extends BasController{
     constructor(){
-        super(new Service());          
+        super(new Service());             
         this.employeeService = new EmployeeService();
     }
-    @route(':id') 
+    @route('item/:id') 
     async getItem({ id }) {
         return await this.service.getItem(id);
     }
@@ -24,10 +25,10 @@ export class Conteroller extends BasController{
         return this.toCollection(activities,[employees],activities.length);
     }
 
-    @route('create', 'get')
-    async createItem() {
+    @route('create', 'get',false)
+    createItem() {        
         return {
-            
+
         };
     }
 
