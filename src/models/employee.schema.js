@@ -1,6 +1,6 @@
 var {Schema} = require('mongoose');
 
-export default {  
+export default new Schema({  
   name:Schema.Types.String,
   area:Schema.Types.String,/*服务区域*/
   phone:Schema.Types.String,
@@ -13,4 +13,4 @@ export default {
   updated:{type:Schema.Types.Date,default:Date.now},
   createBy:Schema.Types.ObjectId,
   updateBy:Schema.Types.ObjectId
-};
+});

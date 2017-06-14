@@ -1,6 +1,6 @@
 var {Schema} = require('mongoose');
 
-export default {  
+export default new Schema({  
   name:Schema.Types.String,
   type:Schema.Types.String,
   desc:Schema.Types.String,
@@ -9,4 +9,4 @@ export default {
   updated:{type:Schema.Types.Date,default:Date.now},
   createBy:Schema.Types.ObjectId,
   updateBy:Schema.Types.ObjectId
-};
+});

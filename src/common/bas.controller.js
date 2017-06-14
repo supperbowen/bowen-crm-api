@@ -2,13 +2,8 @@ import UserService from '../services/user.service';
 import _ from 'lodash';
 
 export default class BasController{
-  constructor(service){
-    this.Service = service;
+  constructor(){
     this.userService = new UserService();
-  }
-
-  get service(){
-    return this.Service;
   }
 
   toCollection(items=[], lookupItems={}, count=0){

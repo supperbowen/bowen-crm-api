@@ -1,15 +1,17 @@
 import { routePrefix, route } from '../router';
-import Service from '../services/activity.service';
+import Service from '../common/service.decorator';
+import ActivityService from '../services/activity.service';
 import BasController from '../common/bas.controller';
 import EmployeeService from '../services/employee.service';
 import context from '../common/context'
 
-
+var service = new Service();
 
 @routePrefix('activity')
+@Service(ActivityService,'activity')
 export default class Conteroller extends BasController{
     constructor(){
-        super(new Service());             
+        super();        
         this.employeeService = new EmployeeService();
     }
     @route('item/:id') 

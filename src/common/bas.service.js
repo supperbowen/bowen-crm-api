@@ -3,15 +3,9 @@ var {Schema} = mongoose;
 var _ = require('lodash');
 export default class Service{
   constructor(name, schema){
-    this.schemaDeclare = schema;
-    this.schema = new Schema(schema);
-    this.name = name;
+    this.schema = schema;
+    this.DbModel = mongoose.model(name, this.schema);
   }
-
-  get DbModel(){
-    return mongoose.model(this.name, this.schema);
-  }
-
   hasKey(key){
     return this.schema.hasOwnProperty(key);
   }
@@ -60,8 +54,11 @@ export default class Service{
     var id = item._id;
     if(id){
       delete item._id;
+      return this.DbModel.findByIdAndUpdate(id, item, {upsert:true});
+    }else{
+      return this.toSchema(item).save();
+
     }
-    return this.DbModel.findByIdAndUpdate(id, item, {upsert:true}).exec();
   }
   create(){
     return {};

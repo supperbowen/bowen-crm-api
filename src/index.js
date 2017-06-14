@@ -1,9 +1,9 @@
 import 'babel-polyfill';
 import {koaRouter} from './router';
-import context from './common/context';
+//import context from './common/context';
 
 const Koa = require('koa');
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
 const app = new Koa();
 
 
