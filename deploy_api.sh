@@ -14,6 +14,4 @@ rm -rf  id_rsa.enc
 rm -rf deploy_api.sh
 rm -rf README.md
 rm -rf LICENSE
-pm2 delete all
-pm2 start app/index.js -- -a -d $db
 

@@ -18,6 +18,7 @@ after_success:
 - export SSHPASS=$pwd
 - sshpass -e scp ./deploy_api.sh $host:/usr/local/source/distss/
 - sshpass -e ssh $host 'cd /usr/local/source/distss && sh deploy_api.sh'
+- sshpass -e ssh $host 'cd /usr/local/source/crm/bowen-crm-api & pm2 delete all & pm2 start app/index.js -- -a -d $db'
 env:
   global:
   - secure: McskYIW/g6ODpo8ANs9uTr75X8A89MoSSCW9JIUfbuhwCZVtvH9oq7QVrYL+YPCfu2SW5j7Q79U+Fa5O/kBKGrKPqaXpAaA+/U4N7OjxCwHDALSOkyBErEGNx15xPVw2TwZywKwSe66MJS6C34w3GLvv5EYhgh4hE2ZwAyZiVlpwothtfSe5MUr67tALIKCiK3dCv1FrVMWU5NZHK5Mie9JC/D4oWxaGm81QCnmosm76poVYdIcvRtH5EvOrsdEgnC4EYU3/r7kubn9Ku+9tOEA1L+AE2T2VLByURVoDuuydJUZF+jLdVBPe+fOuY7QMBkHXRBGJaLFbJIofyRlQDfQbb5nbW37WoOmt5FQVoh7bVtGuZ1IrlZUjeAKm6uL+QlxQ2YxJYfe7Q6eSeAzINXLaeoWreigO7hJ4ul2MNYMfAm8j6/BYoMcpBA9+NlhguSXjfp3FPIqsx6MBAY9/l1z9bjnoZLWKyLD+mIxEcSqyQeHPWd/Ax/gl9l/BmfOITLOU6oCsWRcI+e9o4o3lW/PTcnvGO7LyGu89DBz+UMIjPVwOdYhlNZGBZd7b53KaDP8o7y6kaT4+aOzhDtZrQt31+kKR3ISMyOAsxzeZ9r10eEv1jzG/biZMoKxft3J9EUdQd4eGbr5Ee/BN0rzSH8bHOT7KjIpuSqO0NaIU4Og=
