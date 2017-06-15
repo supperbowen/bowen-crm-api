@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Seed project form nodejs koa",
   "main": "index.js",
-  "scripts": {
+  "scripts": {    
     "build": "babel src -d app",
     "prod": "babel src -d api",
     "dev": "babel src -d app --watch --source-maps",

@@ -31,6 +31,8 @@ export default class TemplateConteroller {
         user.name = 'sysadmin';
         user.desc = '管理员';
         user.nickName = 'admin';
+        user.email = '452562076@qq.com';
+        user.password='9981';
         return await this.service.saveItem(user);
     }
 

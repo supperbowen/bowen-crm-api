@@ -7,8 +7,6 @@ cd bowen-crm-api
 cnpm install
 npm i koa
 npm run build
-sh /usr/local/source/kill-node.sh 
-nohup node app/koa-app.js &
 rm -rf .git 
 rm -rf .gitignore
 rm -rf .travis.yml
@@ -16,5 +14,6 @@ rm -rf  id_rsa.enc
 rm -rf deploy_api.sh
 rm -rf README.md
 rm -rf LICENSE
-
+pm2 delete all
+pm2 start app/index.js -- -a -d $db
 
