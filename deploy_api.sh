@@ -17,6 +17,6 @@ rm -rf deploy_api.sh
 rm -rf README.md
 rm -rf LICENSE
 #start pm2 service
-sh ./pm2.sh
+sh ../pm2.sh
 
 
