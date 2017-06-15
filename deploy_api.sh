@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd /usr/local/source/crm
+/usr/local/source/crm/node_modules/pm2/bin/pm2 delete all
 rm -rf bowen-crm-api
 git clone https://github.com/supperbowen/bowen-crm-api.git
 cd bowen-crm-api
