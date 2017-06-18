@@ -1,5 +1,7 @@
 import 'babel-polyfill';
-import {koaRouter} from './router';
+import {
+	koaRouter
+} from './router';
 //import context from './common/context';
 
 const Koa = require('koa');
@@ -13,7 +15,7 @@ import controllers from './controllers';
 controllers.bindRouters();
 
 app.use(koaRouter.routes())
-  .use(koaRouter.allowedMethods());
+	.use(koaRouter.allowedMethods());
 
 app.listen(8088);
 console.log('server started : http://localhost:8088/');

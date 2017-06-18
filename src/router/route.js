@@ -1,5 +1,7 @@
 var router = require('koa-router');
-import { koaRouter } from './koa-router';
+import {
+	koaRouter
+} from './koa-router';
 
 /**
  * route 
@@ -29,64 +31,64 @@ import { koaRouter } from './koa-router';
  * create               post          createUser(){}
  */
 export function route(route, method, isAsync = true) {
-    return function (target, key, descriptor) {
-        setTimeout(function () {//TODO：默认类的实例化会在函数实例化之后，所有这里会加这个东东
-            var prefix = target.router && target.router.prefix,
-                fixed_route;
+	return function(target, key, descriptor) {
+		setTimeout(function() { //TODO：默认类的实例化会在函数实例化之后，所有这里会加这个东东
+			var prefix = target.router && target.router.prefix,
+				fixed_route;
 
-            if (route) {
-                fixed_route = prefix ? `/${prefix}/${route}` : `/${route}`;
-            } else {
-                fixed_route = `/${prefix}`;
-            }
+			if (route) {
+				fixed_route = prefix ? `/${prefix}/${route}` : `/${route}`;
+			} else {
+				fixed_route = `/${prefix}`;
+			}
 
-            console.log(fixed_route); //打印当前的路由表
+			console.log(fixed_route); //打印当前的路由表
 
-            method = method || getDefaultHttpMethod(key, route) || 'get';
+			method = method || getDefaultHttpMethod(key, route) || 'get';
 
-            console.log(`route=>[${method}]${fixed_route}`);
+			console.log(`route=>[${method}]${fixed_route}`);
 
-            koaRouter[method](fixed_route, async function (next) {
-                var result;
-                try {
-                    if (method === 'get' || method === 'delete') {
-                        if (isAsync) {
-                            result = await descriptor.value.call(target, this.params, this);
-                        } else {
-                            result = descriptor.value(target,this.params, this);
-                        }
-                    } else {
-                        if (isAsync) {
-                            result = await descriptor.value(target,this.body, this);
-                        } else {
-                            result = descriptor.value(target,this.body,this);
-                        }
-                    }
-                } catch (error) {
-                    //服务器错误自动打出来，这里没有向前端扔出错误，后面会添加当前的环境是debug还是production进一步进行优化。
-                    console.error(error);
-                    this.status = 500;
-                }
+			koaRouter[method](fixed_route, async function(next) {
+				var result;
+				try {
+					if (method === 'get' || method === 'delete') {
+						if (isAsync) {
+							result = await descriptor.value.call(target, this.params, this);
+						} else {
+							result = descriptor.value(target, this.params, this);
+						}
+					} else {
+						if (isAsync) {
+							result = await descriptor.value(target, this.body, this);
+						} else {
+							result = descriptor.value(target, this.body, this);
+						}
+					}
+				} catch (error) {
+					//服务器错误自动打出来，这里没有向前端扔出错误，后面会添加当前的环境是debug还是production进一步进行优化。
+					console.error(error);
+					this.status = 500;
+				}
 
-                this.body = result;
-                await next;
-            });
-            return descriptor;
-        })
-    }
+				this.body = result;
+				await next;
+			});
+			return descriptor;
+		})
+	}
 }
 
 
 function getDefaultHttpMethod(name, route) {
-    if (/^get/.test(name)) {
-        return 'get';
-    } else if (/^update/.test(name)) {
-        return 'put';
-    } else if (/^delete/.test(name) || /^remove/.test(name)) {
-        return 'delete';
-    } else if (/^create/.test(name)) {
-        return 'post';
-    } else if (route) {
-        return getDefaultHttpMethod(route);
-    }
+	if (/^get/.test(name)) {
+		return 'get';
+	} else if (/^update/.test(name)) {
+		return 'put';
+	} else if (/^delete/.test(name) || /^remove/.test(name)) {
+		return 'delete';
+	} else if (/^create/.test(name)) {
+		return 'post';
+	} else if (route) {
+		return getDefaultHttpMethod(route);
+	}
 }
