@@ -2,6 +2,7 @@ import 'babel-polyfill';
 import {
 	koaRouter
 } from './router';
+import context from './common/context';
 //import context from './common/context';
 
 const bodypraser = require('koa-bodyparser');
@@ -36,6 +37,9 @@ koaRouter.post('/token', app.oauth.grant());
 
 app.use(koaRouter.routes())
 	.use(koaRouter.allowedMethods());
+
+var mongoose = require('mongoose');
+mongoose.connect(context.dburl);
 
 app.listen(8088);
 console.log('server started : http://localhost:8088/');
