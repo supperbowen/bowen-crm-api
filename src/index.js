@@ -7,7 +7,7 @@ import {
 const bodypraser = require('koa-bodyparser');
 const mount = require('koa-mount');
 const oauthserver = require('koa-oauth-server');
-const model = require('../models/oauth.schema');
+const model = require('./models/oauth.schema');
 
 const Koa = require('koa');
 //const mongoose = require('mongoose');
