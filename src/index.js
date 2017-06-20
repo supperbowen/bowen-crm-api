@@ -4,7 +4,7 @@ import {
 } from './router';
 //import context from './common/context';
 
-const bodypraser = require('koa-bodypraser');
+const bodypraser = require('koa-bodyparser');
 const mount = require('koa-mount');
 const oauthserver = require('koa-oauth-server');
 const model = require('../models/oauth.schema');
