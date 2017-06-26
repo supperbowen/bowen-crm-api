@@ -17,7 +17,7 @@ before_install:
 after_success:
 - export SSHPASS=$pwd
 - sshpass -e scp -P $port ./deploy_api.sh $host:/usr/local/source/distss/
-- sshpass -e ssh -p $host 'cd /usr/local/source/distss && sh deploy_api.sh'
+- sshpass -e ssh -p $port $host 'cd /usr/local/source/distss && sh deploy_api.sh'
 env:
   global:
   - secure: TBr+qOVQwmIv0E5PdiK9ktnSqfq9olmzjnDZaVFaaHDyWJ+uc3pGj/1VSPqlpLM5ebBKfG5zwBUF/SOwgVfe7EJbgTcYis7+iadV3vWfVJ9ls+/YhmyFOXPqAxHtOcLlQuYyN5RX0u+bc8r3tpVg1LBj5SUWQTOk1iS8uVw88UAF3KAFiYNLOc0MS1+QNHxVcmq/ssPpRGHG068uXN0wkh/3ZkZDaeb9o7qPWZP5QvKOo9xopiy6nPk6bAfxED6fJD4Bi1p5ONTDWYqoGEACi5pONI6h3b6j5mX01wndHPtMVNrmgpCtUVdqWnYX+x1YzybZGKcXMJBCFdTNBt2O9Ztn7R51n6aPEyQq4bsztWy7fn46C+UVX2QcqH++3DVf6YgDkjIWHqmhDwBgag5w5TPoSnhmDdC3DUE46DGxvu7xXMfdAYxichAYQAHxHBEzVWusH1aFJQkLTuEoBsxeHQ/RSZBxTD19KmPCIYKJCdNEZOXz0hXU7kb5TGCKvTLjcMOrOCErxup/fXxUMmfMqvMAr5ztufX4rouYKl58IWRwpW1EaMzwrhOBSNmKf7SrAqqeABJs1aRN5LNfGAcMeB49Mz/AKnJEYUlIcY3GirnyYvrp1ZHqQkPOQd8X18RS8aCXWR7GG7ZtqIGQKWGux/Nw0bMzj4HBELTByArbS3k=
