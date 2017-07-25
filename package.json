@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Seed project form nodejs koa",
   "main": "index.js",
-  "scripts": {    
+  "scripts": {
     "build": "babel src -d app",
     "prod": "babel src -d api",
     "dev": "babel src -d app --watch --source-maps",
@@ -17,6 +17,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "babel-runtime": "^6.23.0",
     "commander": "^2.9.0",
+    "feedparser": "^2.2.1",
     "jquery": "^3.1.1",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",

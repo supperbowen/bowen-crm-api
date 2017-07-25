@@ -13,11 +13,11 @@ import controllers from './controllers';
 controllers.bindRouters();
 
 
-app.use(koaRouter.routes())
+app.use(koaRouter.routes()) 
 	.use(koaRouter.allowedMethods());
 
 var mongoose = require('mongoose');
-mongoose.openUri(context.dburl);
+mongoose.connect(context.dburl);
 
 app.listen(8088);
 console.log('server started : http://localhost:8088/');
