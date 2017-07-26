@@ -2,7 +2,8 @@ var {
 	Schema
 } = require('mongoose');
 
-var articleSchema = new Schema({
+export default new Schema({
+	name: Schema.Types.String,
 	author: Schema.Types.String,
 	link: Schema.Types.String,
 	description: Schema.Types.String,
@@ -10,14 +11,7 @@ var articleSchema = new Schema({
 	origlink: Schema.Types.String,
 	pubDate: Schema.Types.String,
 	title: Schema.Types.String,
-	summary: Schema.Types.String
-});
-
-export default new Schema({
-	name: Schema.Types.String,
-	link: Schema.Types.String,
-	date: Schema.Types.Date,
-	articles: [articleSchema],
+	summary: Schema.Types.String,
 	created: {
 		type: Schema.Types.Date,
 		default: Date.now

@@ -30,7 +30,7 @@ export default class RssConteroller {
 	}) {
 		let data = await this.service.getRssList(url);
 		let result = await this.service.saveArticles(url, data);
-		return data;
+		return result;
 	}
 
 

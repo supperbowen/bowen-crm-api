@@ -14,19 +14,14 @@ export default class Service extends basService {
 	}
 
 	async saveArticles(link, articles) {
-		var name = link + new Date().toLocaleDateString();
-		var rssObj = {
-			name,
-			link,
-			articles,
-			date: new Date()
+		var saved = [];
+		for(let article of articles){
+			article.name = link + article.guid;
+			let result = await this.saveItem(article);
+			saved.push(result);
 		}
 
-		var rssObj = (await this.getItem({
-			'name': name
-		})) || rssObj;
-
-		return await this.saveItem(rssObj);
+		return await saved;
 	}
 
 	getItemByGuid(guid) {
