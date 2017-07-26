@@ -17,11 +17,10 @@ export default class RssConteroller {
 
 	}
 
-	@route('list/:id') //http://localhost:3000/user/list/?filter={filter}
-	async getUsers({
-		filter
-	}) {
-
+	@route('list','post') //http://localhost:3000/user/list/?filter={filter}
+	async getUsers() {
+		let data = await this.service.getList({});
+		return data;
 	}
 
 	@route('sync/:url', 'get')
