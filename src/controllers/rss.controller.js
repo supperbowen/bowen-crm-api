@@ -5,6 +5,7 @@ import {
 } from '../router';
 import Service from '../common/service.decorator';
 import RssService from '../services/rss.service';
+import _ from 'lodash'
 
 
 @routePrefix('rss')
@@ -22,6 +23,13 @@ export default class RssConteroller {
 		pageSize,pageNum
 	}) {
 		let list = await this.service.getList({},pageSize, pageNum);
+		list = _.map(list, (item)=>{
+			_id:item._id,
+			author:item.author,
+			created:item.created,
+			link:item.link,
+			title:item.title
+		});
 		return {list,pageNum,pageSize};
 	}
 
