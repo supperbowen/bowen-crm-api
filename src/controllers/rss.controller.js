@@ -18,9 +18,11 @@ export default class RssConteroller {
 	}
 
 	@route('list','post') //http://localhost:3000/user/list/?filter={filter}
-	async getUsers() {
-		let data = await this.service.getList({});
-		return data;
+	async getUsers({
+		pageSize,pageNum
+	}) {
+		let list = await this.service.getList({},pageSize, pageNum);
+		return {list,pageNum,pageSize};
 	}
 
 	@route('sync/:url', 'get')

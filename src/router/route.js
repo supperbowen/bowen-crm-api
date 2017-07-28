@@ -48,29 +48,30 @@ export function route(route, method, isAsync = true) {
 
 			console.log(`route=>[${method}]${fixed_route}`);
 
-			koaRouter[method](fixed_route, async function(next) {
+			koaRouter[method](fixed_route, async function(ctx, next) {
 				var result;
 				try {
 					if (method === 'get' || method === 'delete') {
 						if (isAsync) {
-							result = await descriptor.value.call(target, this.params, this);
+							result = await descriptor.value.call(target, ctx.params, ctx);
 						} else {
-							result = descriptor.value.call(target, this.params, this);
+							result = descriptor.value.call(target, ctx.params, ctx);
 						}
 					} else {
 						if (isAsync) {
-							result = await descriptor.value.call(target, this.body, this);
+							result = await descriptor.value.call(target, ctx.request.body||{}, ctx);
 						} else {
-							result = descriptor.value.call(target, this.body, this);
+							result = descriptor.value.call(target, ctx.request.body||{}, ctx);
 						}
 					}
 				} catch (error) {
 					//服务器错误自动打出来，这里没有向前端扔出错误，后面会添加当前的环境是debug还是production进一步进行优化。
 					console.error(error);
-					this.status = 500;
+					ctx.status = 500;
 				}
 
-				this.body = result;
+				ctx.response.body = result;
+				//ctx.render(result);
 				await next;
 			});
 			return descriptor;
