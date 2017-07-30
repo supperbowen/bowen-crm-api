@@ -5,6 +5,7 @@ import UserController from './user.controller';
 import RoleController from './role.controller';
 import ActivityController from './activity.controller';
 import RssController from './rss.controller';
+import RssOptionController from './rssoption.controller';
 import context from '../common/context';
 
 export default {
@@ -13,5 +14,6 @@ export default {
 		koaRouter.add(RoleController);
 		koaRouter.add(ActivityController);
 		koaRouter.add(RssController);
+		koaRouter.add(RssOptionController);
 	}
 };

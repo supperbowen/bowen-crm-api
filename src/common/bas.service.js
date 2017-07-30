@@ -27,6 +27,11 @@ export default class Service {
 
 		return query.sort(sortter).exec();
 	}
+
+	getListCount(filter) {
+		return this.DbModel.count(filter).exec();
+	}
+
 	getLikeList(filter, keys, pageSize, pageNumber, sortter) {
 		keys = keys && keys.length ? keys : ['name', 'desc'];
 		var filterOptions = {
@@ -62,13 +67,14 @@ export default class Service {
 	deleteItem(id) {
 		return this.DbModel.findByIdAndRemove(id).exec();
 	}
-	saveItem(item) {
+	async saveItem(item) {
 		var id = item._id;
 		if (id) {
 			delete item._id;
-			return this.DbModel.findByIdAndUpdate(id, item, {
+			await this.DbModel.findByIdAndUpdate(id, item, {
 				upsert: true
 			});
+			return await this.DbModel.findById(id).exec();
 		} else {
 			return this.toSchema(item).save();
 

@@ -52,22 +52,24 @@ export function route(route, method, isAsync = true) {
 				var result;
 				try {
 					if (method === 'get' || method === 'delete') {
+						var params = Object.keys(ctx.params).length ? ctx.params : ctx.query;
 						if (isAsync) {
-							result = await descriptor.value.call(target, ctx.params, ctx);
+							result = await descriptor.value.call(target, params, ctx);
 						} else {
-							result = descriptor.value.call(target, ctx.params, ctx);
+							result = descriptor.value.call(target, params, ctx);
 						}
 					} else {
 						if (isAsync) {
-							result = await descriptor.value.call(target, ctx.request.body||{}, ctx);
+							result = await descriptor.value.call(target, ctx.request.body || {}, ctx);
 						} else {
-							result = descriptor.value.call(target, ctx.request.body||{}, ctx);
+							result = descriptor.value.call(target, ctx.request.body || {}, ctx);
 						}
 					}
 				} catch (error) {
 					//服务器错误自动打出来，这里没有向前端扔出错误，后面会添加当前的环境是debug还是production进一步进行优化。
 					console.error(error);
-					ctx.status = 500;
+					result = error;
+					ctx.status = 201;
 				}
 
 				ctx.response.body = result;

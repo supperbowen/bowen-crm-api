@@ -4,20 +4,16 @@ var {
 
 export default new Schema({
 	name: Schema.Types.String,
-	optionId: Schema.Types.String,	
 	icon: Schema.Types.String,
-	author: Schema.Types.String,
 	link: Schema.Types.String,
-	description: Schema.Types.String,
-	guid: Schema.Types.String,
-	origlink: Schema.Types.String,
-	pubDate: Schema.Types.String,
 	title: Schema.Types.String,
-	summary: Schema.Types.String,
-	isPush: Schema.Types.Boolean,
-	pushDate: Schema.Types.Date,
 	remark: Schema.Types.String,
-	content: Schema.Types.String,
+	filters: [
+		{regexp: Schema.Types.String},
+		{content: Schema.Types.String}
+	],
+	appendText: Schema.Types.String,
+	prependText: Schema.Types.String,
 	created: {
 		type: Schema.Types.Date,
 		default: Date.now
