@@ -40,7 +40,41 @@ export default class RssConteroller {
 			return {
 				_id: item._id,
 				author: item.author,
-				icon:item.icon,
+				icon: item.icon,
+				created: item.created,
+				link: item.link,
+				title: item.title,
+				isPush: item.isPush,
+				pushDate: item.isPush && item.pushDate
+			};
+		});
+		return {
+			list,
+			pageNum,
+			pageSize,
+			totalItems
+		};
+	}
+
+	@route('pushlist', 'post') //http://localhost:3000/user/list/?filter={filter}
+	async getList({
+		pageSize,
+		pageNum
+	}) {
+		let list = await this.service.getList({
+			isPush: true
+		}, pageSize, pageNum, {
+			pushDate: -1,
+			updated: -1
+		});
+		let totalItems = await this.service.getListCount({});
+		// let rssOptionService = new RssOptionService();
+		list = _.map(list, (item) => {
+			// var rssOption = (await rssOptionService.getItemById(item.optionId)) || {};
+			return {
+				_id: item._id,
+				author: item.author,
+				icon: item.icon,
 				created: item.created,
 				link: item.link,
 				title: item.title,
