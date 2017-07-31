@@ -15,9 +15,18 @@ const http = require('http');
 export default class RssConteroller {
 	@route('', 'get') //http://localhost:3000/user/(id)
 	async getItem({
-		id
+		id,
+		isAbout
 	}) {
-		let item = await this.service.getItemById(id);
+		let item = {};
+		if (isAbout) {
+			item = await this.service.getItem({
+				ctg: 'about',
+				isPush: true
+			});
+		} else if (id) {
+			item = await this.service.getItemById(id);
+		}
 		if (!item.content) {
 			item.content = await this.service.getPageHtml(item.link);
 		}
