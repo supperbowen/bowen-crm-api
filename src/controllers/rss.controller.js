@@ -57,7 +57,7 @@ export default class RssConteroller {
 	}
 
 	@route('pushlist', 'post') //http://localhost:3000/user/list/?filter={filter}
-	async getList({
+	async getPushList({
 		pageSize,
 		pageNum
 	}) {
