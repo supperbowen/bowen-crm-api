@@ -4,7 +4,7 @@ var {
 
 export default new Schema({
 	name: Schema.Types.String,
-	optionId: Schema.Types.String,	
+	optionId: Schema.Types.String,
 	icon: Schema.Types.String,
 	author: Schema.Types.String,
 	link: Schema.Types.String,
@@ -18,6 +18,7 @@ export default new Schema({
 	pushDate: Schema.Types.Date,
 	remark: Schema.Types.String,
 	content: Schema.Types.String,
+	ctg: Schema.Types.String,
 	created: {
 		type: Schema.Types.Date,
 		default: Date.now
