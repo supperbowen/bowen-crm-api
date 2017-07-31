@@ -40,17 +40,12 @@ export default class RssConteroller {
 			return {
 				_id: item._id,
 				author: item.author,
+				icon:item.icon,
 				created: item.created,
 				link: item.link,
 				title: item.title,
 				isPush: item.isPush,
 				pushDate: item.isPush && item.pushDate
-				// ,
-				// option: {
-				// 	title: rssOption.title,
-				// 	icon: rssOption.icon,
-				// 	name: rssOption.name
-				// }
 			};
 		});
 		return {
