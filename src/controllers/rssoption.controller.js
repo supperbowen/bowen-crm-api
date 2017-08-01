@@ -33,8 +33,8 @@ export default class RssConteroller {
 				created: item.created,
 				link: item.link,
 				title: item.title,
-				icon:item.icon,
-				name:item.name
+				icon: item.icon,
+				name: item.name
 			};
 		});
 		return {
@@ -55,6 +55,11 @@ export default class RssConteroller {
 	@route('save', 'post')
 	async saveRssOption(item) {
 		return await this.service.saveItem(item);
+	}
+
+	@route('create', 'post')
+	async createNew(opitons) {
+		return await this.service.createNew(opitons);
 	}
 
 	@route(':id', 'delete')

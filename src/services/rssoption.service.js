@@ -2,6 +2,7 @@ import basService from '../common/bas.service';
 import schema from '../models/rssoption.schema';
 import rssBooker from '../common/rss.booker';
 import RssService from './rss.service';
+var _ = require('lodash');
 
 
 export default class Service extends basService {
@@ -9,10 +10,12 @@ export default class Service extends basService {
 		super('rssoption', schema);
 	}
 
-	create() {
-		return {
+	createNew(options={}) {
+		var newItem = {
 
 		};
+		let result = r=>r(_.extend({},newItem, options));
+		return this.toPromise(result);
 	}
 
 	async saveArticles(link, articles) {

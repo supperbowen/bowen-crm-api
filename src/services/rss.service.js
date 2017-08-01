@@ -1,5 +1,6 @@
 import basService from '../common/bas.service';
 import schema from '../models/rss.schema';
+var _ = require('lodash');
 
 
 export default class Service extends basService {
@@ -35,9 +36,16 @@ export default class Service extends basService {
 		});
 	}
 
-	// getRssList(url) {
-	// 	return getRssList(url);
-	// }
+	createNew(options = {}) {
+		var newItem = {
+			ctg:'article',
+			isPush: false,
+			pushDate: new Date()
+		};
+
+		let result = _.extend({}, newItem, options);
+		return this.toPromise(result);
+	}
 
 	getPageHtml(url) {
 		var request = require('superagent');

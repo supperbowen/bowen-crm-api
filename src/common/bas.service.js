@@ -14,6 +14,9 @@ export default class Service {
 	toSchema(item) {
 		return new this.DbModel(item);
 	}
+	toPromise(val){
+		return new Promise(r=>r(val));
+	}
 	getList(filter, pageSize, pageNumber, sortter) {
 		pageNumber = pageNumber || 0;
 		var skipItems = pageNumber * pageSize;
