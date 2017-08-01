@@ -22,12 +22,12 @@ export default class Service extends basService {
 		var saved = [];
 		var rssService = new RssService();
 
-		var rssOption = this.getItem({
-			link: url
+		var rssOption = await this.getItem({
+			link: link
 		});
 
 		for (let article of articles) {
-			article.name = rssOption.name + article.name;
+			article.name = rssOption.name +' - '+ article.title;
 			article.optionId = rssOption._id;
 			var item = await rssService.getItem({
 				name: article.name
