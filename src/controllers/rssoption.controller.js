@@ -62,11 +62,12 @@ export default class RssConteroller {
 		return await this.service.createNew(opitons);
 	}
 
-	@route(':id', 'delete')
+	@route('delete', 'delete')
 	async deleteUser({
 		id
 	}) {
-		return await this.service.deleteItem(id);
+		await this.service.deleteItem(id);
+		return  id;
 	}
 }
 

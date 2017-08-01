@@ -119,11 +119,12 @@ export default class RssConteroller {
 		return await this.service.createNew(options);
 	}
 
-	@route(':id', 'delete')
+	@route('delete', 'delete')
 	async deleteItem({
 		id
 	}) {
-		return await this.service.deleteItem(id);
+		await this.service.deleteItem(id);
+		return id;
 	}
 
 	@route('page', 'get')
