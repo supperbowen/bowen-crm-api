@@ -21,8 +21,7 @@ export default class RssConteroller {
 		let item = {};
 		if (isAbout) {
 			item = await this.service.getItem({
-				ctg: 'about',
-				isPush: true
+				ctg: 'about'
 			});
 		} else if (id) {
 			item = await this.service.getItemById(id);
