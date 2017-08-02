@@ -74,6 +74,7 @@ export default class Service {
 		var id = item._id;
 		if (id) {
 			delete item._id;
+			item.updated = new Date();
 			await this.DbModel.findByIdAndUpdate(id, item, {
 				upsert: true
 			});

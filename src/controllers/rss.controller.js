@@ -13,7 +13,7 @@ const http = require('http');
 @routePrefix('rss')
 @Service(RssService, 'rss')
 export default class RssConteroller {
-	@route('', 'get') //http://localhost:3000/user/(id)
+	@route('', 'get') 
 	async getItem({
 		id,
 		isAbout
@@ -35,7 +35,7 @@ export default class RssConteroller {
 		return item;
 	}
 
-	@route('list', 'post') //http://localhost:3000/user/list/?filter={filter}
+	@route('list', 'post') 
 	async getList({
 		pageSize,
 		pageNum
