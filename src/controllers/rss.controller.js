@@ -13,7 +13,7 @@ const http = require('http');
 @routePrefix('rss')
 @Service(RssService, 'rss')
 export default class RssConteroller {
-	@route('', 'get') 
+	@route('', 'get')
 	async getItem({
 		id,
 		isAbout
@@ -35,7 +35,7 @@ export default class RssConteroller {
 		return item;
 	}
 
-	@route('list', 'post') 
+	@route('list', 'post')
 	async getList({
 		pageSize,
 		pageNum
@@ -53,6 +53,7 @@ export default class RssConteroller {
 				link: item.link,
 				title: item.title,
 				isPush: item.isPush,
+				ctg: item.ctg,
 				pushDate: item.isPush && item.pushDate
 			};
 		});
@@ -70,7 +71,8 @@ export default class RssConteroller {
 		pageNum
 	}) {
 		let list = await this.service.getList({
-			isPush: true
+			isPush: true,
+			isAbout:false
 		}, pageSize, pageNum, {
 			pushDate: -1,
 			updated: -1
@@ -87,6 +89,7 @@ export default class RssConteroller {
 				link: item.link,
 				title: item.title,
 				isPush: item.isPush,
+				ctg: item.ctg,
 				pushDate: item.isPush && item.pushDate
 			};
 		});
@@ -110,11 +113,22 @@ export default class RssConteroller {
 
 	@route('save', 'post')
 	async saveItem(item) {
+
+		if (item.ctg === 'about' && item.isPush) {
+			//由于只会有一个相关的，把其它的相关文章去掉。
+			let aboutArticles = await this.service.getList({
+				ctg: 'about'
+			});
+			for (let article of aboutArticles) {
+				article.ctg = 'article';
+				await this.service.saveItem(article);
+			}
+		}
 		return await this.service.saveItem(item);
 	}
 
-	@route('create','post')
-	async createNew(options){
+	@route('create', 'post')
+	async createNew(options) {
 		return await this.service.createNew(options);
 	}
 
