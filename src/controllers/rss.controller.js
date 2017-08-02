@@ -72,7 +72,7 @@ export default class RssConteroller {
 	}) {
 		let list = await this.service.getList({
 			isPush: true,
-			isAbout:false
+			ctg:'article'
 		}, pageSize, pageNum, {
 			pushDate: -1,
 			updated: -1
